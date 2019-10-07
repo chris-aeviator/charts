@@ -284,7 +284,7 @@ ingress:
   ## enable ingress
   ## Note: If you want to change url prefix for web ui or flower even if you do not use ingress,
   ## you can still change ingress.web.path and ingress.flower.path
-  enabled: false
+  enabled: true
   ##
   ## Configure the webserver endpoint
   web:
@@ -302,7 +302,7 @@ ingress:
     path: ""
     ##
     ## hostname for the webserver
-    host: ""
+    host: "airflow.lb.ranch-1.myzel.io"
     ##
     ## Annotations for the webserver
     ## Airflow webserver handles relative path completely, just let your load balancer give the HTTP
@@ -390,7 +390,7 @@ ingress:
 persistence:
   ##
   ## enable persistance storage
-  enabled: false
+  enabled: true
   ##
   ## Existing claim to use
   # existingClaim: nil
@@ -404,7 +404,7 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   # storageClass: default
-  accessMode: ReadWriteOnce
+  accessMode: ReadWriteMany
   ##
   ## Persistant storage size request
   size: 1Gi
@@ -451,7 +451,7 @@ dags:
   git:
     ##
     ## url to clone the git repository
-    url:
+    url: https://git.tools.myzel.io/chris/example-dag
     ##
     ## branch name, tag or sha1 to reset to
     ref: master
@@ -459,7 +459,7 @@ dags:
     secret: ""
   initContainer:
     ## Fetch the source code when the pods starts
-    enabled: false
+    enabled: true
     ## Image for the init container (any image with git will do)
     image:
       ## docker-airflow image
